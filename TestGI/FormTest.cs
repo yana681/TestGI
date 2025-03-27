@@ -12,15 +12,9 @@ namespace TestGI
 {
     public partial class FormTest : Form
     {
+        List<ClassQuection> listQ = new List<ClassQuection>();
+        
         Random rnd = new Random();
-        ClassQuection q1 = new ClassQuection("2 + 2 * 2",6);
-        ClassQuection q2 = new ClassQuection("Бревно нужно распелить на 10 ч сколько сделать распилов", 9);
-        ClassQuection q3 = new ClassQuection("на двух руказ 10 пб сколько п на 10 руках", 25);
-
-
-
-        string[] questions = { "2 + 2 * 2", "бревно", "пальцы", "уколы", "свечи" };
-        int[] anwers = { 6, 9, 25, 60, 3 };
         int indexQuestion = 0;
         int countRightAnswer = 0;
         string[] diagnose = { "идиот", "кретин", "дурак", "норма", "талант", "гений" };
@@ -30,7 +24,15 @@ namespace TestGI
         {
             InitializeComponent();
             //startTest();
-            labelQuestion.Text = q1.ToString();
+            ClassQuection q1 = new ClassQuection("2 + 2 * 2", 6);
+            listQ.Add(q1);
+            ClassQuection q2 = new ClassQuection("Бревно нужно распелить на 10 ч сколько сделать распилов", 9);
+            listQ.Add(q2);
+            ClassQuection q3 = new ClassQuection("на двух руках 10 пб сколько п на 10 руках", 25);
+            listQ.Add(q3);
+            listQ.Add(new ClassQuection("Укол делают каждые полчаса сколько нужно минут на 3 укола ", 60));
+            listQ.Add(new ClassQuection("77+12", 65));
+            labelQuestion.Text = listQ[0].ToString();
         }
 
         int[] shuffle()
@@ -52,22 +54,22 @@ namespace TestGI
             orderQuestions = shuffle();
             indexQuestion = 0;
             countRightAnswer = 0;
-            labelQuestion.Text = questions[orderQuestions[indexQuestion]];
+            labelQuestion.Text = listQ[orderQuestions[indexQuestion]].ToString();
             labelNumberOfQuestion.Text = "Вопрос №" + (indexQuestion + 1).ToString();
             buttonNewStart.Visible = false;
         }
 
         private void buttonNextQuestion_Click(object sender, EventArgs e)
         {
-            if (indexQuestion < questions.Length)
+            if (indexQuestion < listQ.Count)
             {
                 int userAnswer = Convert.ToInt32(textBoxUserAnswer.Text);
-                if (userAnswer == anwers[orderQuestions[indexQuestion]])
+                if (listQ[orderQuestions[indexQuestion]].checkA(userAnswer))
                     countRightAnswer++;
                 indexQuestion++;
-                if (indexQuestion < questions.Length)
+                if (indexQuestion < listQ.Count)
                 {
-                    labelQuestion.Text = questions[orderQuestions[indexQuestion]];
+                    labelQuestion.Text = listQ[orderQuestions[indexQuestion]].ToString();
                     labelNumberOfQuestion.Text = "Вопрос №" + (indexQuestion + 1).ToString();
                 }
             }

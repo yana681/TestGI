@@ -9,7 +9,7 @@ namespace TestGI
     class ClassQuection
     {
         string textQ;
-        int ranswer;
+        public int ranswer;
 
         public ClassQuection(string text, int answer) 
         {
@@ -19,6 +19,10 @@ namespace TestGI
         public string ToString()
         {
             return textQ;
+        }
+        public bool checkA(int usera)
+        {
+            return ranswer == usera;
         }
     }
 }
