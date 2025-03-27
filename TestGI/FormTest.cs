@@ -13,6 +13,12 @@ namespace TestGI
     public partial class FormTest : Form
     {
         Random rnd = new Random();
+        ClassQuection q1 = new ClassQuection("2 + 2 * 2",6);
+        ClassQuection q2 = new ClassQuection("Бревно нужно распелить на 10 ч сколько сделать распилов", 9);
+        ClassQuection q3 = new ClassQuection("на двух руказ 10 пб сколько п на 10 руках", 25);
+
+
+
         string[] questions = { "2 + 2 * 2", "бревно", "пальцы", "уколы", "свечи" };
         int[] anwers = { 6, 9, 25, 60, 3 };
         int indexQuestion = 0;
@@ -23,7 +29,8 @@ namespace TestGI
         public FormTest()
         {
             InitializeComponent();
-            startTest();
+            //startTest();
+            labelQuestion.Text = q1.ToString();
         }
 
         int[] shuffle()

@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassQuection.cs" />
     <Compile Include="FormTest.cs">
       <SubType>Form</SubType>
     </Compile>
